@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import PortalView from '../views/PortalView.vue'
+import webui from '@/views/WebuiView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'portal',
-      component: PortalView
+      component: webui
     }
   ]
 })

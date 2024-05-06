@@ -1,9 +1,36 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import WebuiView from '@/views/WebuiView.vue'
+import { onUnmounted, onMounted } from 'vue'
+import { usePortal } from '@/views/usePortal'
+import { useUtils } from '@/views/useUtil'
+const { re_entry, exit } = usePortal()
+const { getServiceId, setServiceId } = useUtils()
+const onload = async (event) => {
+  let id = getServiceId()
+  if (id !== -1) {
+    console.log('re entry service', id)
+    await re_entry(id)
+  }
+}
+const beforeunload = async (event) => {
+  console.log('leave service')
+  let id = getServiceId()
+  await exit(id)
+  // exit会重置session中的id，所以重新设置
+  setServiceId(id)
+}
+onMounted(() => {
+  window.addEventListener('load', onload)
+  window.addEventListener('beforeunload', beforeunload)
+})
+onUnmounted(() => {
+  window.removeEventListener('load', onload)
+  window.removeEventListener('beforeunload', beforeunload)
+})
 </script>
 
 <template>
-  <RouterView />
+  <WebuiView />
 </template>
 
 <style scoped></style>

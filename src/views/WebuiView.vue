@@ -24,13 +24,15 @@
     <Portal></Portal>
   </a-drawer>
   <div class="iframe-container">
-    <iframe src="https://pinia.vuejs.org/zh/core-concepts/" frameborder="0"></iframe>
+    <iframe :src="store.service" frameborder="0"></iframe>
   </div>
 </template>
 <script lang="ts" setup>
 import { DatabaseOutlined } from '@ant-design/icons-vue'
 import Portal from './PortalComponent.vue'
 import { useDrawer } from './useDrawer.js'
+import { useServiceStore } from '@/stores/service'
+const store = useServiceStore()
 const { open, showDrawer, onClose } = useDrawer()
 </script>
 <style scoped>

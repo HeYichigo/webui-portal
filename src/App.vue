@@ -3,8 +3,8 @@ import WebuiView from '@/views/WebuiView.vue'
 import { onUnmounted, onMounted } from 'vue'
 import { usePortal } from '@/views/usePortal'
 import { useUtils } from '@/views/useUtil'
-const { re_entry, exit } = usePortal()
-const { getServiceId, setServiceId } = useUtils()
+const { re_entry, force_exit } = usePortal()
+const { getServiceId } = useUtils()
 const onload = async (event) => {
   let id = getServiceId()
   if (id !== -1) {
@@ -15,9 +15,7 @@ const onload = async (event) => {
 const beforeunload = async (event) => {
   console.log('leave service')
   let id = getServiceId()
-  await exit(id)
-  // exit会重置session中的id，所以重新设置
-  setServiceId(id)
+  await force_exit(id)
 }
 onMounted(() => {
   window.addEventListener('load', onload)

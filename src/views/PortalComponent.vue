@@ -3,7 +3,7 @@ import { useServiceStore } from '@/stores/service'
 import { onBeforeUnmount } from 'vue'
 import { usePortal } from './usePortal'
 const store = useServiceStore()
-const { get_list, timmer, entry, exit } = usePortal()
+const { get_list, timmer, entry } = usePortal()
 
 get_list()
 
@@ -17,7 +17,7 @@ onBeforeUnmount(() => {
     <div v-for="(item, i) in store.service_list" :key="i">
       <a-card hoverable class="mx-auto" size="small" max-width="200" @click="entry(item.id)">
         <a-card-meta>
-          <template #title>{{ item.host }}</template>
+          <template #title>{{ item.name }}</template>
           <template #description>当前使用人数: {{ item.count }}</template>
         </a-card-meta>
       </a-card>

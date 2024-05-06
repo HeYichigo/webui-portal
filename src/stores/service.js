@@ -5,18 +5,27 @@ const TIME_OUT = 1.5 * 1000
 export const useServiceStore = defineStore('service', () => {
   const info = ref({
     service_list: [],
-    service: ''
+    service: '',
+    service_name: '',
+    count: 0
   })
-  const { getServiceId, setServiceId, setFrame, getFrame } = useUtils()
+  const { getServiceId, setServiceId, setFrame, getFrame, getName, setName } = useUtils()
 
   const service_id = getServiceId
   const can_clear = () => getServiceId() !== -1
   const service_list = computed(() => info.value.service_list)
   const service = computed(() => info.value.service)
+  const service_name = computed(() => info.value.service_name)
+  const service_count = computed(() => info.value.count)
   const showFrame = ref(false)
 
   const update_service_list = (new_list) => {
     info.value.service_list = new_list
+    let id = getServiceId()
+    let item = new_list.find((i) => i.id === id)
+    if (item !== undefined) {
+      info.value.count = item.count
+    }
   }
 
   const update_selected_service = (id) => {
@@ -34,19 +43,23 @@ export const useServiceStore = defineStore('service', () => {
           url = `http://{item.host}:{item.port}`
         }
         setFrame(url)
-
+        setName(item.name)
         setTimeout(() => {
+          info.value.service_name = item.name
           info.value.service = url
+          showFrame.value = true
         }, TIME_OUT)
-        showFrame.value = true
       }
     } catch (error) {
       let url = getFrame()
+      let name = getName()
       if (url === null) {
         showFrame.value = false
       } else {
         setTimeout(() => {
           info.value.service = url
+          info.value.service_name = name
+          showFrame.value = true
         }, TIME_OUT)
       }
     }
@@ -56,7 +69,10 @@ export const useServiceStore = defineStore('service', () => {
     service_id,
     can_clear,
     service_list,
+    service_name,
+    service_count,
     service,
+    showFrame,
     update_selected_service,
     update_service_list
   }

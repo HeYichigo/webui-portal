@@ -12,6 +12,12 @@ const useUtils = () => {
   const getFrame = () => {
     return window.sessionStorage.getItem('frame')
   }
-  return { getServiceId, setServiceId, setFrame, getFrame }
+  const getName = () => {
+    return window.sessionStorage.getItem('name')
+  }
+  const setName = (name) => {
+    window.sessionStorage.setItem('name', name)
+  }
+  return { getServiceId, setServiceId, setFrame, getFrame, getName, setName }
 }
 export { useUtils }

@@ -9,9 +9,9 @@
       <DatabaseOutlined />
     </template>
   </a-float-button>
-  <div class="fixed-position fixed-content fixed-content-border">
-    <p>当前所在服务器:</p>
-    <p>当前所在服务器:</p>
+  <div v-if="store.showFrame" class="fixed-position fixed-content fixed-content-border">
+    <p>{{ store.service_name }}</p>
+    <p>当前使用人数: {{ store.service_count }}</p>
   </div>
   <a-drawer
     title="服务器列表"

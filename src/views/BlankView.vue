@@ -32,15 +32,19 @@ const store = useServiceStore()
   align-items: center;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0);
+  color: white;
+  font-weight: bold;
+  font-size: 15pt;
 }
 .background-img {
   height: 100vh;
   width: 100vw;
-  background: url('../assets/58769465_p0.png') no-repeat;
+  background: url('../assets/video.gif') no-repeat;
   position: fixed;
-  opacity: 0.6;
+  background-position: center;
   top: 0;
   z-index: -10;
   background-size: cover;
+  background-color: black;
 }
 </style>

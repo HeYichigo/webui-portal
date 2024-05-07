@@ -26,8 +26,9 @@ const usePortal = () => {
     store.update_selected_service(id)
   }
   // 退出某个服务器，在页面关闭或刷新时
-  const force_exit = async (id) => {
-    await exit_service(id)
+  const force_exit = (id) => {
+    let data = JSON.stringify({ service_id: id })
+    window.navigator.sendBeacon('http://127.0.0.1:7860/beacon', data)
   }
   // 退出某个服务器
   const exit = async (id) => {

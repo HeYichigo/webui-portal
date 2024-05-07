@@ -18,6 +18,9 @@ export const useServiceStore = defineStore('service', () => {
   const service_name = computed(() => info.value.service_name)
   const service_count = computed(() => info.value.count)
   const showFrame = ref(false)
+  // 刷新时重新执行此处
+
+  const loading = ref(getFrame() !== null)
 
   const update_service_list = (new_list) => {
     info.value.service_list = new_list
@@ -33,7 +36,9 @@ export const useServiceStore = defineStore('service', () => {
     try {
       let list = info.value.service_list
       if (id === -1) {
+        // 当未选择服务器或是退出上个服务器时进入Blank
         showFrame.value = false
+        loading.value = false
       } else {
         let item = list[id - 1]
         let url = ''
@@ -44,22 +49,30 @@ export const useServiceStore = defineStore('service', () => {
         }
         setFrame(url)
         setName(item.name)
+        // 设置数秒后退出Blank并渲染画面
+        loading.value = true
         setTimeout(() => {
           info.value.service_name = item.name
           info.value.service = url
           showFrame.value = true
+          loading.value = false
         }, TIME_OUT)
       }
     } catch (error) {
       let url = getFrame()
       let name = getName()
       if (url === null) {
+        // 曾经未选择过服务器进入Blank
         showFrame.value = false
+        loading.value = false
       } else {
+        // 设置数秒后退出Blank并渲染画面
+        loading.value = true
         setTimeout(() => {
           info.value.service = url
           info.value.service_name = name
           showFrame.value = true
+          loading.value = false
         }, TIME_OUT)
       }
     }
@@ -68,6 +81,7 @@ export const useServiceStore = defineStore('service', () => {
   return {
     service_id,
     can_clear,
+    loading,
     service_list,
     service_name,
     service_count,

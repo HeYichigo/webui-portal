@@ -12,10 +12,10 @@ const onload = async (event) => {
     await re_entry(id)
   }
 }
-const beforeunload = async (event) => {
+const beforeunload = (event) => {
   console.log('leave service')
   let id = getServiceId()
-  await force_exit(id)
+  force_exit(id)
 }
 onMounted(() => {
   window.addEventListener('load', onload)

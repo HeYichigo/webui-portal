@@ -23,13 +23,15 @@
   >
     <Portal></Portal>
   </a-drawer>
-  <div class="iframe-container">
+  <div v-if="store.showFrame" class="iframe-container">
     <iframe :src="store.service" frameborder="0"></iframe>
   </div>
+  <Blank v-else></Blank>
 </template>
 <script lang="ts" setup>
 import { DatabaseOutlined } from '@ant-design/icons-vue'
 import Portal from './PortalComponent.vue'
+import Blank from './BlankView.vue'
 import { useDrawer } from './useDrawer.js'
 import { useServiceStore } from '@/stores/service'
 const store = useServiceStore()

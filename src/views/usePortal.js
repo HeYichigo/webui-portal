@@ -28,7 +28,8 @@ const usePortal = () => {
   // 退出某个服务器，在页面关闭或刷新时
   const force_exit = (id) => {
     let data = JSON.stringify({ service_id: id })
-    window.navigator.sendBeacon('http://127.0.0.1:7860/beacon', data)
+    let url = import.meta.env.VITE_APP_BACKEND + '/beacon'
+    window.navigator.sendBeacon(url, data)
   }
   // 退出某个服务器
   const exit = async (id) => {

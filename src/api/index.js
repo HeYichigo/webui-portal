@@ -1,8 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  //   baseURL: process.env.VUE_APP_BACKEND
-  baseURL: 'http://127.0.0.1:7860'
+  baseURL: import.meta.env.VITE_APP_BACKEND
 })
 async function get_service_list() {
   return await api.get('/services')

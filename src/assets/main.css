@@ -1,1 +1,6 @@
 @import './base.css';
+
+@font-face {
+  font-family: HQVarType;
+  src: url('./HQVariableType.TTF');
+}

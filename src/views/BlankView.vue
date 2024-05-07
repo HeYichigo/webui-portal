@@ -8,9 +8,10 @@ const store = useServiceStore()
   <div v-if="store.loading" class="example">
     <a-spin tip="加载中..." />
   </div>
-  <div v-else class="notice">
-    <h1>当前未选择服务器</h1>
-    <h1>请点击右下角按钮进行选择</h1>
+  <div v-else class="notice notice-font">
+    <p>当前未选择服务器</p>
+    <p style="font-size: large">404 Not Found.</p>
+    <p>请点击右下角按钮进行选择</p>
   </div>
   <div class="background-img"></div>
 </template>
@@ -32,9 +33,12 @@ const store = useServiceStore()
   align-items: center;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0);
+}
+.notice-font {
   color: white;
-  font-weight: bold;
-  font-size: 15pt;
+  font-weight: bolder;
+  font-size: 30pt;
+  font-family: HQVarType;
 }
 .background-img {
   height: 100vh;
@@ -45,6 +49,6 @@ const store = useServiceStore()
   top: 0;
   z-index: -10;
   background-size: cover;
-  background-color: black;
+  background-color: rgb(13, 14, 13);
 }
 </style>

@@ -10,7 +10,7 @@ const store = useServiceStore()
   </div>
   <div v-else class="notice notice-font">
     <p>当前未选择服务器</p>
-    <p style="font-size: large">404 Not Found.</p>
+    <p style="font-size: large">Select a server please.</p>
     <p>请点击右下角按钮进行选择</p>
   </div>
   <div class="background-img"></div>
@@ -36,7 +36,7 @@ const store = useServiceStore()
 }
 .notice-font {
   color: white;
-  font-weight: bolder;
+  /* font-weight: bolder; */
   font-size: 30pt;
   font-family: HQVarType;
 }

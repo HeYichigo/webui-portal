@@ -1,7 +1,7 @@
 <script setup>
 import { useServiceStore } from '@/stores/service'
 import { onBeforeUnmount } from 'vue'
-import { usePortal } from './usePortal'
+import { usePortal } from '../views/usePortal'
 const store = useServiceStore()
 const { get_list, timmer, entry } = usePortal()
 

@@ -36,7 +36,6 @@ const store = useServiceStore()
 }
 .notice-font {
   color: white;
-  /* font-weight: bolder; */
   font-size: 30pt;
   font-family: HQVarType;
 }

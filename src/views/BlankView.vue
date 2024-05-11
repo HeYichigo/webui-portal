@@ -5,7 +5,7 @@ const store = useServiceStore()
 </script>
 
 <template>
-  <div v-if="store.loading" class="example">
+  <div v-if="store.loading" class="loading-spin">
     <a-spin tip="加载中..." />
   </div>
   <div v-else class="notice notice-font">
@@ -17,7 +17,7 @@ const store = useServiceStore()
 </template>
 
 <style scoped>
-.example {
+.loading-spin {
   text-align: center;
   background-color: rgba(255, 255, 255, 0);
   height: 100vh;
@@ -38,16 +38,5 @@ const store = useServiceStore()
   color: white;
   font-size: 30pt;
   font-family: HQVarType;
-}
-.background-img {
-  height: 100vh;
-  width: 100vw;
-  background: url('../assets/video.gif') no-repeat;
-  position: fixed;
-  background-position: center;
-  top: 0;
-  z-index: -10;
-  background-size: cover;
-  background-color: rgb(13, 14, 13);
 }
 </style>

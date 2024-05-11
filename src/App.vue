@@ -1,18 +1,18 @@
-<script setup>
+<script lang="ts" setup>
 import WebuiView from '@/views/WebuiView.vue'
 import { onUnmounted, onMounted } from 'vue'
 import { usePortal } from '@/views/usePortal'
 import { useUtils } from '@/views/useUtil'
 const { re_entry, force_exit } = usePortal()
 const { getServiceId } = useUtils()
-const onload = async (event) => {
+const onload = async (event: Event) => {
   let id = getServiceId()
   if (id !== -1) {
     console.log('re entry service', id)
     await re_entry(id)
   }
 }
-const beforeunload = (event) => {
+const beforeunload = (event: Event) => {
   console.log('leave service')
   let id = getServiceId()
   force_exit(id)

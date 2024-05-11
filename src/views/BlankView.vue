@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { useServiceStore } from '@/stores/service'
 
 const store = useServiceStore()

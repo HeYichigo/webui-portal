@@ -26,8 +26,8 @@
 </template>
 <script lang="ts" setup>
 import { DatabaseOutlined } from '@ant-design/icons-vue'
-import Portal from './PortalComponent.vue'
-import { useDrawer } from './useDrawer.js'
+import Portal from '@/components/PortalComponent.vue'
+import { useDrawer } from '@/components/useDrawer'
 import { useServiceStore } from '@/stores/service'
 const store = useServiceStore()
 const { open, showDrawer, onClose } = useDrawer()

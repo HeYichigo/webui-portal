@@ -1,35 +1,49 @@
 <script lang="ts" setup>
+import { login } from '@/api'
 import { useLoginPopupStore } from '@/stores/loginpopup'
+import { useUserStore } from '@/stores/user'
+import { useUtils } from '@/views/useUtil'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { computed, reactive } from 'vue'
 
-const store = useLoginPopupStore()
+const popupStore = useLoginPopupStore()
+const { signin } = useUserStore()
+const { setToken } = useUtils()
 
-interface FormState {
+interface LoginForm {
   username: string
   password: string
 }
 
-const formState = reactive<FormState>({
+const formState = reactive<LoginForm>({
   username: '',
   password: ''
 })
-const onFinish = (values: any) => {
+
+const onFinish = async (values: LoginForm) => {
+  // values 发送给api
+  const { data } = await login(values.username, values.password)
+  let token = data.access_token
+  setToken(token)
+  // 成功后将user-store更新为signin
+  signin()
+  popupStore.close()
   console.log('Success:', values)
 }
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo)
 }
+
 const disabled = computed(() => {
   return !(formState.username && formState.password)
 })
 </script>
 <template>
   <div
-    v-if="store.popup"
+    v-if="popupStore.popup"
     class="popup-position popup-layout popup-background"
-    @click.self="store.close"
+    @click.self="popupStore.close"
   >
     <div class="popup-content popup-content-layout popup-content-style popup-content-background">
       <a-form

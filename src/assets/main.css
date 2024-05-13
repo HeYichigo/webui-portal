@@ -5,6 +5,41 @@
   src: url('./font.ttf');
 }
 
+.popup-background {
+  background-color: rgba(255, 255, 255, 0.397);
+}
+.popup-content {
+  height: 400px;
+  width: 500px;
+  z-index: 20;
+}
+.popup-content-background {
+  background-color: white;
+}
+.popup-position {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+}
+.popup-content-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.popup-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.title-background-img {
+  background: url('./main-logo.png');
+  background-position: top;
+  background-size: 300px;
+}
 .background-img {
   height: 100vh;
   width: 100vw;
@@ -15,4 +50,19 @@
   z-index: -10;
   background-size: cover;
   background-color: rgb(13, 14, 13);
+}
+
+.notice {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0);
+}
+.notice-font {
+  color: white;
+  font-size: 30pt;
+  font-family: HQVarType;
 }

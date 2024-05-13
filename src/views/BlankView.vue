@@ -25,18 +25,4 @@ const store = useServiceStore()
   position: fixed;
   top: 40%;
 }
-.notice {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0);
-}
-.notice-font {
-  color: white;
-  font-size: 30pt;
-  font-family: HQVarType;
-}
 </style>

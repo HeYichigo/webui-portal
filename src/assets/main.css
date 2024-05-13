@@ -17,7 +17,7 @@
   z-index: 20;
 }
 .popup-content-background {
-  background-color: white;
+  background-color: rgb(252, 252, 252);
 }
 .popup-position {
   height: 100vh;

@@ -4,12 +4,13 @@ import { useLoginPopupStore } from '@/stores/loginpopup'
 import { useUserStore } from '@/stores/user'
 import { useUtils } from '@/views/useUtil'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
-import { computed, reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
+import { message } from 'ant-design-vue'
 
 const popupStore = useLoginPopupStore()
 const { signin } = useUserStore()
 const { setToken } = useUtils()
-
+const isLoading = ref(false)
 interface LoginForm {
   username: string
   password: string
@@ -21,13 +22,23 @@ const formState = reactive<LoginForm>({
 })
 
 const onFinish = async (values: LoginForm) => {
+  isLoading.value = true
   // values 发送给api
-  const { data } = await login(values.username, values.password)
-  let token = data.access_token
-  setToken(token)
-  // 成功后将user-store更新为signin
-  signin()
-  popupStore.close()
+  try {
+    const { data } = await login(values.username, values.password)
+    let token = data.access_token
+    setToken(token)
+    // 成功后将user-store更新为signin
+    setTimeout(() => {
+      signin()
+      popupStore.close()
+      isLoading.value = false
+    }, 2 * 1000)
+  } catch (error) {
+    isLoading.value = false
+    message.error('用户名或密码错误')
+  }
+
   console.log('Success:', values)
 }
 
@@ -85,6 +96,7 @@ const disabled = computed(() => {
             style="width: 100%"
             type="primary"
             html-type="submit"
+            :loading="isLoading"
             >登录</a-button
           >
         </a-form-item>

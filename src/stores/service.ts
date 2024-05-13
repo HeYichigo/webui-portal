@@ -1,8 +1,8 @@
 import { useUtils } from '@/views/useUtil'
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-// tip: dev
-const TIME_OUT = 1.5 * 10000
+
+const TIME_OUT = 1.5 * 1000
 interface ServiceInfo {
   service_list: Array<any>
   service: string

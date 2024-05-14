@@ -13,7 +13,18 @@ const store = useServiceStore()
     <p style="font-size: large">Select a server please.</p>
     <p>请点击右下角按钮进行选择</p>
   </div>
-  <div class="background-img"></div>
+  <div class="frount-page-background">
+    <video
+      class="background-video"
+      preload="auto"
+      loop
+      playsinline
+      autoplay
+      tabindex="-1"
+      muted
+      src="@/assets/frount.mp4"
+    ></video>
+  </div>
 </template>
 
 <style scoped>

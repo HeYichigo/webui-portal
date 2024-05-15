@@ -6,8 +6,10 @@ import { useUtils } from '@/views/useUtil'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { computed, reactive, ref } from 'vue'
 import { message } from 'ant-design-vue'
+import { useSignupStore } from '@/stores/signuppopup'
 
 const popupStore = useLoginPopupStore()
+const { open } = useSignupStore()
 const { signin } = useUserStore()
 const { setToken } = useUtils()
 const isLoading = ref(false)
@@ -36,7 +38,7 @@ const onFinish = async (values: LoginForm) => {
     }, 2 * 1000)
   } catch (error) {
     isLoading.value = false
-    message.error('用户名或密码错误')
+    message.error('账号或密码错误')
   }
 
   console.log('Success:', values)
@@ -56,7 +58,9 @@ const disabled = computed(() => {
     class="popup-position popup-layout popup-background"
     @click.self="popupStore.close"
   >
-    <div class="popup-content popup-content-layout popup-content-style popup-content-background">
+    <div
+      class="popup-login-content popup-content-layout popup-content-style popup-content-background"
+    >
       <a-form
         :model="formState"
         :wrapper-col="{ span: 24 }"
@@ -66,10 +70,10 @@ const disabled = computed(() => {
         @finishFailed="onFinishFailed"
       >
         <a-form-item
-          label="用户名"
+          label="账号"
           name="username"
           :colon="false"
-          :rules="[{ required: true, message: '请输入用户名!' }]"
+          :rules="[{ required: true, message: '请输入账号!' }]"
         >
           <a-input v-model:value="formState.username">
             <template #prefix> <UserOutlined class="site-form-item-icon" /> </template
@@ -99,6 +103,7 @@ const disabled = computed(() => {
             :loading="isLoading"
             >登录</a-button
           >
+          <span>没有用户？<a @click="open">注册</a></span>
         </a-form-item>
       </a-form>
     </div>

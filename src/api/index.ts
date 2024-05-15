@@ -24,6 +24,10 @@ async function exit_service(service_id: number) {
   await api.post('/exit', { service_id: service_id })
 }
 
+async function get_orgs_list() {
+  return await api.get('/orgs')
+}
+
 async function login(username: string, password: string) {
   return await api.post(
     '/token',
@@ -38,5 +42,13 @@ async function login(username: string, password: string) {
     }
   )
 }
+async function signup(name: string, username: string, password: string, org: number) {
+  await api.post('/users', {
+    name,
+    username,
+    password,
+    org_id: org
+  })
+}
 
-export { get_service_list, entry_service, exit_service, login }
+export { get_service_list, entry_service, exit_service, login, signup, get_orgs_list }

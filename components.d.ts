@@ -17,11 +17,13 @@ declare module 'vue' {
     AFormItem: typeof import('ant-design-vue/es')['FormItem']
     AInput: typeof import('ant-design-vue/es')['Input']
     AInputPassword: typeof import('ant-design-vue/es')['InputPassword']
+    ASelect: typeof import('ant-design-vue/es')['Select']
     ASpin: typeof import('ant-design-vue/es')['Spin']
     FloatButton: typeof import('./src/components/FloatButton.vue')['default']
     LoginPopup: typeof import('./src/components/LoginPopup.vue')['default']
     PortalComponent: typeof import('./src/components/PortalComponent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SignupPopup: typeof import('./src/components/SignupPopup.vue')['default']
   }
 }

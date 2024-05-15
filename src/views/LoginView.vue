@@ -2,6 +2,7 @@
 import { LoginOutlined } from '@ant-design/icons-vue'
 import LoginPopup from '@/components/LoginPopup.vue'
 import { useLoginPopupStore } from '@/stores/loginpopup'
+import SignupPopup from '@/components/SignupPopup.vue'
 const { open } = useLoginPopupStore()
 const letopen = () => {
   console.log('open')
@@ -20,6 +21,7 @@ const letopen = () => {
     </a-button>
   </div>
   <LoginPopup></LoginPopup>
+  <SignupPopup></SignupPopup>
   <div class="background-img"></div>
 </template>
 <style>

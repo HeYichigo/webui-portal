@@ -23,10 +23,15 @@
 .popup-content-style {
   border-radius: 15px;
 }
-.popup-content {
+.popup-login-content {
   height: 320px;
   width: 400px;
   z-index: 20;
+}
+.popup-signup-content {
+  height: 500px;
+  width: 400px;
+  z-index: 30;
 }
 .popup-content-background {
   background-color: rgb(252, 252, 252);
